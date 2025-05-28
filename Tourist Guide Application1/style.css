@@ -1,0 +1,99 @@
+/* Style for form container */
+.form-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+}
+
+h2 {
+    margin-top: 0;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    text-align: left;
+}
+
+input[type="text"],input[type="number"],input[type="date"],input[type="time"],input[type="email"],
+textarea,select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width:100%;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+/* Style for drag and drop area */
+.drag-drop-area {
+    border: 2px dashed #ccc;
+    padding: 20px;
+    cursor: pointer;
+}
+
+.drag-drop-area:hover {
+    background-color: #f0f0f0;
+}
+
+/* Style for uploaded files */
+.uploaded-files {
+    text-align: left;
+    margin-top: 10px;
+}
+
+.uploaded-files img {
+    max-width: 100px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+#addHotel {
+    float: left;
+    margin-top:0.5rem;
+    margin-bottom:0.5rem;
+  }
+  
+
+
+/* Flexbox container for facility checkboxes */
+.facilityCheckboxes {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  /* Style for individual facility checkbox label */
+  .facilityCheckboxes label {
+    flex: 1 0 calc(25% - 0.3rem); /* Adjust width for 4 checkboxes per line */
+    margin-right: 0.3rem;
+    margin-bottom: .3rem;
+  }
+  
+  /* Optional: Adjust label styling */
+  .facilityCheckboxes label input[type="checkbox"] {
+    margin-right: .3rem;
+  }
+  /* Media query for small screens */
+@media screen and (max-width: 600px) {
+    .facilityCheckboxes label {
+        flex: 1 0 calc(50% - 0.5rem); /* Adjust width for 1 checkbox per line */
+        margin-bottom: 0.5rem;
+    }
+}

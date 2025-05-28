@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Restaurant</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="form-container">
+    <h2>Add New Restaurant</h2>
+    <form action="submit_restaurant.php" method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br>
+        
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" rows="4" cols="50" required></textarea><br>
+        
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address" required><br>
+        
+        <label for="city">City:</label>
+        <input type="text" id="city" name="city" required><br>
+        
+        <label for="country">Country:</label>
+        <input type="text" id="country" name="country" required><br>
+        <label for="upload picture">Upload Picture:</label><br>
+            <!-- Drag and drop area -->
+            <div class="drag-drop-area" id="drag-drop-area" ondrop="dropImages(event)" ondragover="allowDrop(event)" onclick="triggerFileInput()">
+                Drag & Drop or Click to Select Pictures
+            </div>
+            <input type="file" id="picture" name="picture" accept="image/*" multiple style="display: none;" onchange="displayImages(event)">
+            <div class="uploaded-files" id="uploaded-files"></div>
+        <label for="latitude">Latitude:</label>
+        <input type="text" id="latitude" name="latitude" required><br>
+        
+        <label for="longitude">Longitude:</label>
+        <input type="text" id="longitude" name="longitude" required><br>
+        
+        <label for="cuisine_type">Cuisine Type:</label>
+        <input type="text" id="cuisine_type" name="cuisine_type"><br>
+        
+        <label for="opening_hours">Opening Hours:</label>
+        <input type="text" id="opening_hours" name="opening_hours"><br>
+        
+        <label for="website">Website:</label>
+        <input type="text" id="website" name="website"><br>
+        
+        <input type="submit" value="Submit">
+    </form>
+</div>
+<script>
+    function allowDrop(event) {
+        event.preventDefault();
+    }
+
+    function dropImages(event) {
+        event.preventDefault();
+        var files = event.dataTransfer.files;
+        displayImages(files);
+    }
+
+    function displayImages(event) {
+        var files = event.target.files;
+        var uploadedFilesContainer = document.getElementById("uploaded-files");
+        uploadedFilesContainer.innerHTML = ""; // Clear previous uploaded files
+        for (var i = 0; i < files.length; i++) {
+            var file = files[i];
+            var img = document.createElement("img");
+            img.src = URL.createObjectURL(file);
+            img.setAttribute("alt", "Image");
+            uploadedFilesContainer.appendChild(img);
+        }
+    }
+
+    function triggerFileInput() {
+        document.getElementById("picture").click();
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Place</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Style for form container */
+        .form-container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        h2 {
+            margin-top: 0;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            text-align: left;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        /* Style for drag and drop area */
+        .drag-drop-area {
+            border: 2px dashed #ccc;
+            padding: 20px;
+            cursor: pointer;
+        }
+
+        .drag-drop-area:hover {
+            background-color: #f0f0f0;
+        }
+
+        /* Style for uploaded files */
+        .uploaded-files {
+            text-align: left;
+            margin-top: 10px;
+        }
+
+        .uploaded-files img {
+            max-width: 100px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Add New Place</h2>
+        <form action="submit_place.php" method="post" enctype="multipart/form-data">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required><br>
+            
+            <label for="description">Description:</label><br>
+            <textarea id="description" name="description" rows="4" cols="50" required></textarea><br>
+            <label for="description">Upload Picture:</label><br>
+            <!-- Drag and drop area -->
+            <div class="drag-drop-area" id="drag-drop-area" ondrop="dropImages(event)" ondragover="allowDrop(event)" onclick="triggerFileInput()">
+                Drag & Drop or Click to Select Pictures
+            </div>
+            <input type="file" id="picture" name="picture" accept="image/*" multiple style="display: none;" onchange="displayImages(event)">
+            <div class="uploaded-files" id="uploaded-files"></div>
+            
+            <label for="city">City:</label>
+            <input type="text" id="city" name="city" required><br>
+            
+            <label for="category">Category:</label>
+            <input type="text" id="category" name="category"><br>
+            
+            <label for="opening_hours">Opening Hours:</label>
+            <input type="text" id="opening_hours" name="opening_hours"><br>
+            
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <script>
+        function allowDrop(event) {
+            event.preventDefault();
+        }
+
+        function dropImages(event) {
+            event.preventDefault();
+            var files = event.dataTransfer.files;
+            displayImages(files);
+        }
+
+        function displayImages(event) {
+            var files = event.target.files;
+            var uploadedFilesContainer = document.getElementById("uploaded-files");
+            uploadedFilesContainer.innerHTML = ""; // Clear previous uploaded files
+            for (var i = 0; i < files.length; i++) {
+                var file = files[i];
+                var img = document.createElement("img");
+                img.src = URL.createObjectURL(file);
+                img.setAttribute("alt", "Image");
+                uploadedFilesContainer.appendChild(img);
+            }
+        }
+
+        function triggerFileInput() {
+            document.getElementById("picture").click();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Review</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="form-container">
+    <h2>Add New Review</h2>
+    <form action="submit_review.php" method="post">
+        <label for="user_id">User ID:</label>
+        <input type="number" id="user_id" name="user_id" required><br>
+        
+        <label for="place_id">Place ID:</label>
+        <input type="number" id="place_id" name="place_id"><br>
+        
+        <label for="hotel_id">Hotel ID:</label>
+        <input type="number" id="hotel_id" name="hotel_id"><br>
+        
+        <label for="restaurant_id">Restaurant ID:</label>
+        <input type="number" id="restaurant_id" name="restaurant_id"><br>
+        
+        <label for="entity_type">Entity Type:</label>
+        <select id="entity_type" name="entity_type" required>
+            <option value="place">Place</option>
+            <option value="hotel">Hotel</option>
+            <option value="restaurant">Restaurant</option>
+        </select><br>
+        
+        <label for="rating">Rating:</label>
+        <input type="number" id="rating" name="rating" min="1" max="5" required><br>
+        
+        <label for="review_text">Review Text:</label><br>
+        <textarea id="review_text" name="review_text" rows="4" cols="50" required></textarea><br>
+        
+        <label for="review_date">Review Date:</label>
+        <input type="date" id="review_date" name="review_date"><br>
+        <label for="upload picture">Upload Picture:</label><br>
+        <!-- Drag and drop area -->
+        <div class="drag-drop-area" id="drag-drop-area" ondrop="dropImages(event)" ondragover="allowDrop(event)" onclick="triggerFileInput()">
+            Drag & Drop or Click to Select Pictures
+        </div>
+        <input type="file" id="picture" name="picture" accept="image/*" multiple style="display: none;" onchange="displayImages(event)">
+        <div class="uploaded-files" id="uploaded-files"></div>
+        <input type="submit" value="Submit">
+        
+    </form>
+</div>
+<script>
+    function allowDrop(event) {
+        event.preventDefault();
+    }
+
+    function dropImages(event) {
+        event.preventDefault();
+        var files = event.dataTransfer.files;
+        displayImages(files);
+    }
+
+    function displayImages(event) {
+        var files = event.target.files;
+        var uploadedFilesContainer = document.getElementById("uploaded-files");
+        uploadedFilesContainer.innerHTML = ""; // Clear previous uploaded files
+        for (var i = 0; i < files.length; i++) {
+            var file = files[i];
+            var img = document.createElement("img");
+            img.src = URL.createObjectURL(file);
+            img.setAttribute("alt", "Image");
+            uploadedFilesContainer.appendChild(img);
+        }
+    }
+
+    function triggerFileInput() {
+        document.getElementById("picture").click();
+    }
+</script>
+</body>
+</html>

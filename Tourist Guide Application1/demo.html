@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Add Places and Hotels with Images</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="container" class="form-container">
+  <div id="formContainer">
+    <h2>Add Places</h2><br><br>
+    <form id="placeForm" action="insert_data.php" method="post" enctype="multipart/form-data">
+      <label for="placeName">Place Name:</label><br>
+      <input type="text" id="placeName" name="placeName" required><br>
+      <label for="city">City:</label>
+      <input type="text" id="city" name="city" required><br>
+      <label for="PlaceDescription">Place Description:</label><br>
+      <textarea class="PlaceDescription" name="PlaceDescription" rows="4" cols="50" required></textarea><br>
+      <label for="placeImages">Upload Place Pictures:</label><br>
+      <!-- Drag and drop area -->
+      <div class="drag-drop-area" id="placeDragDropArea" ondrop="dropImages(event, 'place')" ondragover="allowDrop(event)" onclick="triggerFileInput('place')">
+        Drag & Drop or Click to Select Pictures
+      </div>
+      <input type="file" id="placePicture" name="placePicture" accept="image/*" multiple style="display: none;" onchange="displayImages(event, 'place')">
+      <!-- Uploaded images container -->
+      <div class="uploaded-files" id="placeUploadedFiles"></div>
+      
+      <div class="uploaded-files" id="hotelsContainer">
+        <!-- Individual hotel input section -->
+        <div class="hotel-input">
+          <label for="hotelName">Hotel Name:</label><br>
+          <input type="text" class="hotelName" name="hotelName[]" required><br>
+          <label for="contactNumber">Contact Number:</label><br>
+          <input type="text" class="contactNumber" name="contactNumber[]" required><br>
+          <label for="email">Email:</label><br>
+          <input type="email" class="email" name="email[]" required><br>
+          <label for="address">Address:</label><br>
+          <input type="text" class="address" name="address[]" required><br>
+          <label for="hotelDescription">Hotel Description:</label><br>
+          <textarea class="hotelDescription" name="hotelDescription[]" rows="4" cols="50" required></textarea><br>
+          <label for="hotelImages">Upload Hotel Pictures:</label><br>
+          <!-- Drag and drop area -->
+          <div class="drag-drop-area" id="hotelDragDropArea" ondrop="dropImages(event, 'hotel')" ondragover="allowDrop(event)" onclick="triggerFileInput('hotel')">
+            Drag & Drop or Click to Select Pictures
+          </div>
+          <input type="file" id="hotelPicture" name="hotelPicture[]" accept="image/*" multiple style="display: none;" onchange="displayImages(event, 'hotel')">
+          <!-- Uploaded images container -->
+          <div class="uploaded-files" id="hotelUploadedFiles" name="hotelUploadFiles[]"></div>
+          
+          <label for="hotelFacilities">Facilities:</label><br>
+          <div id="facilityCheckboxes"></div>
+        </div>
+        <button type="button" class="addHotel">Add Another Hotel</button><br><br>
+      </div>
+      <br><br>
+
+      <input type="submit" value="Submit">
+    </form>
+  </div>
+</div>
+
+<script src="script1.js"></script>
+</body>
+</html>

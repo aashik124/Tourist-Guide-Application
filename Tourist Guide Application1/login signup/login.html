@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+   <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Login Form</h2>
+            <div class="close"><button id="close"onclick="closeForm()">&#x2715;</button></div>
+        </div>
+        <form class="form" id="form" action="login.php" method="POST">
+            <div class="form-control">
+                <label>Username/Email</label>
+                <input class="text" type="text" name="username" id="username" autocomplete="off"autofocus>
+                <small>Error Message</small>
+            </div>    
+            <div class="password-input form-control">
+                <label>Password</label>
+                <input class="text" type="password" name="password" id="password" autocomplete="off">
+                <button type="button" class="eye"onclick="passwordVisibility()">&#x1F441;&#xFE0F;</button>
+                <div class="cross-line"></div>
+                <small>Error Message</small>
+            </div>
+            <div class="btn-group">
+                <input type="submit" value="Submit" id="submit" name="submit" class="btn">
+                <input type="reset" value="Reset" id="reset" name="reset" class="btn">
+            </div><br>
+            <h3>Don't have an account?<a style="font-size:16px;font-weight:500;color:rgb(25, 0, 255);text-underline-offset: none;" href="SignUp.html" target="_parent">Sign Up</a>
+                <span><a style="float:right;font-size:16px;font-weight:500;color:rgb(25, 0, 255);text-underline-offset: none;" href="send_reset_link.php" target="_parent">Forget Password</a></span></h3>
+                
+        </form>
+    </div>
+    <script>
+       function passwordVisibility() {
+    const passwordInput = document.getElementById('password');
+    const crossLine = document.querySelector('.cross-line');
+
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        crossLine.style.display = 'none';
+    } else {
+        passwordInput.type = 'password';
+        crossLine.style.display = 'block';
+    }
+}
+   function closeForm(){
+        const container=document.querySelector('.container');
+        container.style.display='none';
+        window.location.replace('../index.php');
+    }
+    </script>
+</body>
+</html>

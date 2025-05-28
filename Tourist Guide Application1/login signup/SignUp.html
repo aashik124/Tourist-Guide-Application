@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>REGISTRATION FORM</h2>
+            <div class="close"><button id="close"onclick="closeForm()">&#x2715;</button></div>
+        </div>
+        <form class="form" id="form"action="SignUp.php"method="POST">
+            <div class="form-control">
+                <label for="username">Username</label>
+                <input class="text" type="text" name="username" id="username" autocomplete="off"autofocus maxlength="25">
+                <small>Error Message</small>
+            </div>
+            <div class="form-control">
+                <label for="email">Email</label>
+                <input class="text" type="email" name="email" id="email" autocomplete="off">
+                <small>Error Message</small>
+            </div>
+            <div class="form-control">
+                <label for="phone">Phone Number</label>
+                <input class="text" type="text" name="phone" id="phone" autocomplete="off">
+                <small>Error Message</small>
+            </div>
+            <div class="form-control" id="gender-section">
+                <label for="gender">Gender</label>
+                <div class="radio-group">
+                    <label>
+                        <input type="radio" name="gender" id="male"value="male">Male
+                    </label>
+                    <label>
+                        <input type="radio" name="gender" id="female"value="female">Female
+                    </label>
+                    <label>
+                        <input type="radio" name="gender" id="others"value="others">Others
+                    </label>
+                </div>
+                <small id="genderError">Error Message</small>
+            </div>
+            <div class="form-control">
+                <label for="password">Password</label>
+                <input class="text" type="password" name="password" placeholder="Enter minimum 8 or maximum 15 digit password" id="password" autocomplete="off"maxlength="15">
+                <button type="button" class="eye"onclick="passwordVisibility()">&#x1F441;&#xFE0F;</button>
+                <div class="cross-line"></div>
+                <small>Error Message</small>
+            </div>
+            <div class="form-control">
+                <label for="cPassword">Confirm Password</label>
+                <input class="text" type="password" name="cPassword" id="cPassword" autocomplete="off"maxlength="15">
+                <button type="button" class="eye"onclick="confirmPasswordVisibility()">&#x1F441;&#xFE0F;</button>
+                <div class="cross-line"></div>
+                <small>Error Message</small>
+            </div>
+            <div class="btn-group">
+                <input type="submit" value="Submit" id="submit" name="submit" class="btn">
+                <input type="reset" value="Reset" id="reset" name="reset"onclick="resetForm()" class="btn">
+            </div>
+        </form>
+    </div>
+    <script src="SignUpScript.js"type="text/javascript"></script>
+</body>
+</html>

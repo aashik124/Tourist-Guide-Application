@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Add Places</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="form-container">
+        <h2>Add Feedback</h2>
+        <form id="placeForm" action="review.php" method="post" enctype="multipart/form-data">
+            <label for="city">City</label><br>
+            <input type="text" id="city" name="city" required><br>
+            <label for="city">Review Title</label>
+            <input type="text" id="title" name="title" required><br>
+            <label for="feedback">Write Feedback</label><br>
+            <textarea id="feedback" name="feedback" rows="4" cols="50" required></textarea><br>
+            <label for="placeImages">Upload Place Pictures:</label><br>
+            <!-- Drag and drop area -->
+            <div class="drag-drop-area" id="placeDragDropArea" ondrop="dropImages(event, 'place')" ondragover="allowDrop(event)" onclick="triggerFileInput('place')">
+                Drag & Drop or Click to Select Pictures
+            </div>
+            <input type="file" id="placePicture" name="placePicture[]" accept="image/*" multiple style="display: none;" onchange="displayImages(event, 'place')">
+            <!-- Uploaded images container -->
+            <div class="uploaded-files" id="placeUploadedFiles"></div>
+    <input type="submit" value="Submit">
+</form>
+</div>
+    <script src="script.js"></script>
+</body>
+</html>
